@@ -29,13 +29,13 @@ type CustAddress struct {
 // CustDetail : Represent the customer detail
 type CustDetail struct {
 	// first name
-	FName string `json:"first_name"`
+	FName string `json:"first_name,omitempty"`
 
 	// last name
-	LName string `json:"last_name"`
+	LName string `json:"last_name,omitempty"`
 
-	Email    string       `json:"email"`
-	Phone    string       `json:"phone"`
+	Email    string       `json:"email,omitempty"`
+	Phone    string       `json:"phone,omitempty"`
 	BillAddr *CustAddress `json:"billing_address,omitempty"`
 	ShipAddr *CustAddress `json:"customer_address,omitempty"`
 }
@@ -52,7 +52,7 @@ type CreditCardDetail struct {
 	TokenID         string   `json:"token_id"`
 	Bank            string   `json:"bank,omitempty"`
 	Bins            []string `json:"bins,omitempty"`
-	InstallmentTerm []int8   `json:"installment_term,omitempty"`
+	InstallmentTerm int8     `json:"installment_term,omitempty"`
 	Type            string   `json:"type,omitempty"`
 	// indicate if generated token should be saved for next charge
 	SaveTokenID          bool   `json:"save_token_id,omitempty"`
