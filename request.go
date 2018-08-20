@@ -175,7 +175,7 @@ type Callbacks struct {
 	finish string `json:"finish,omitempty"`
 }
 
-// Expiry : Represent expiry time
+// Expiry : Represent transaction expiry time
 type Expiry struct {
 	StartAt  time.Time `json:"start_at,omitempty"`
 	Unit     string    `json:"unit,omitempty"`
