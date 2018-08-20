@@ -1,5 +1,9 @@
 package midtrans
 
+import (
+	"time"
+)
+
 // ItemDetail : Represent the transaction details
 type ItemDetail struct {
 	ID           string `json:"id"`
@@ -57,7 +61,14 @@ type CreditCardDetail struct {
 
 // PermataBankTransferDetail : Represent Permata bank_transfer detail
 type PermataBankTransferDetail struct {
-	Bank Bank `json:"bank"`
+	Bank          Bank    `json:"bank,omitempty"`
+	VaNumber      *string `json:"va_number,omitempty"`
+	RecipientName *string `json:"recipient_name ,omitempty"`
+}
+
+// BNIBankTransferDetail : Represent BNI bank_transfer detail
+type BNIBankTransferDetail struct {
+	VaNumber string `json:"va_number"`
 }
 
 // BCABankTransferLangDetail : Represent BCA bank_transfer lang detail
@@ -88,9 +99,10 @@ type BCABankTransferDetailFreeText struct {
 
 // BCABankTransferDetail : Represent BCA bank_transfer detail
 type BCABankTransferDetail struct {
-	Bank     Bank                          `json:"bank"`
-	VaNumber string                        `json:"va_number"`
-	FreeText BCABankTransferDetailFreeText `json:"free_text"`
+	Bank           Bank                          `json:"bank"`
+	VaNumber       string                        `json:"va_number"`
+	SubCompanyCode *string                       `json:"sub_company_code,omitempty"`
+	FreeText       BCABankTransferDetailFreeText `json:"free_text"`
 }
 
 // MandiriBillBankTransferDetail : Represent Mandiri Bill bank_transfer detail
@@ -158,11 +170,22 @@ type ConvStoreDetail struct {
 	Message string `json:"message"`
 }
 
+// Callbacks : Represent callbacks url after transaction successfully paid
+type Callbacks struct {
+	finish string `json:"finish,omitempty"`
+}
+
+// Expiry : Represent expiry time
+type Expiry struct {
+	StartAt  time.Time `json:"start_at,omitempty"`
+	Unit     string    `json:"unit,omitempty"`
+	duration int64     `json:"duration,omitempty"`
+}
+
 // ChargeReq : Represent Charge request payload
 type ChargeReq struct {
-	PaymentType        PaymentType        `json:"payment_type"`
-	TransactionDetails TransactionDetails `json:"transaction_details"`
-
+	PaymentType                   PaymentType                    `json:"payment_type"`
+	TransactionDetails            TransactionDetails             `json:"transaction_details"`
 	CreditCard                    *CreditCardDetail              `json:"credit_card,omitempty"`
 	BankTransfer                  *BankTransferDetail            `json:"bank_transfer,omitempty"`
 	MandiriBillBankTransferDetail *MandiriBillBankTransferDetail `json:"echannel,omitempty"`
@@ -175,23 +198,26 @@ type ChargeReq struct {
 	IndosatDompetku               *IndosatDompetkuDetail         `json:"indosat_dompetku,omitempty"`
 	CustomerDetail                *CustDetail                    `json:"customer_details,omitempty"`
 	ConvStore                     *ConvStoreDetail               `json:"cstore,omitempty"`
-
-	Items      *[]ItemDetail `json:"item_details,omitempty"`
-	CustField1 string        `json:"custom_field1,omitempty"`
-	CustField2 string        `json:"custom_field2,omitempty"`
-	CustField3 string        `json:"custom_field3,omitempty"`
+	Items                         *[]ItemDetail                  `json:"item_details,omitempty"`
+	CustField1                    string                         `json:"custom_field1,omitempty"`
+	CustField2                    string                         `json:"custom_field2,omitempty"`
+	CustField3                    string                         `json:"custom_field3,omitempty"`
 }
 
 // SnapReq : Represent SNAP API request payload
 type SnapReq struct {
-	TransactionDetails TransactionDetails `json:"transaction_details"`
-	EnabledPayments    []PaymentType      `json:"enabled_payments"`
-	Items              *[]ItemDetail      `json:"item_details,omitempty"`
-	CustomerDetail     *CustDetail        `json:"customer_details,omitempty"`
-	CreditCard         *CreditCardDetail  `json:"credit_card,omitempty"`
-	CustomField1       string             `json:"custom_field1"`
-	CustomField2       string             `json:"custom_field2"`
-	CustomField3       string             `json:"custom_field3"`
+	TransactionDetails  TransactionDetails         `json:"transaction_details"`
+	EnabledPayments     []PaymentType              `json:"enabled_payments"`
+	Items               *[]ItemDetail              `json:"item_details,omitempty"`
+	CustomerDetail      *CustDetail                `json:"customer_details,omitempty"`
+	CreditCard          *CreditCardDetail          `json:"credit_card,omitempty"`
+	BCABankTransfer     *BCABankTransferDetail     `json:"bca_va,omitempty"`
+	BNIBankTransfer     *BNIBankTransferDetail     `json:"bni_va,omitempty"`
+	PermataBankTransfer *PermataBankTransferDetail `json:"permata_va,omitempty"`
+	Expiry              *Expiry                    `json:"expiry,omitempty"`
+	CustomField1        *string                    `json:"custom_field1,omitempty"`
+	CustomField2        *string                    `json:"custom_field2,omitempty"`
+	CustomField3        *string                    `json:"custom_field3,omitempty"`
 }
 
 // CaptureReq : Represent Capture request payload
