@@ -61,9 +61,9 @@ type CreditCardDetail struct {
 
 // PermataBankTransferDetail : Represent Permata bank_transfer detail
 type PermataBankTransferDetail struct {
-	Bank          Bank    `json:"bank,omitempty"`
-	VaNumber      *string `json:"va_number,omitempty"`
-	RecipientName *string `json:"recipient_name ,omitempty"`
+	Bank          Bank   `json:"bank,omitempty"`
+	VaNumber      string `json:"va_number,omitempty"`
+	RecipientName string `json:"recipient_name ,omitempty"`
 }
 
 // BNIBankTransferDetail : Represent BNI bank_transfer detail
@@ -101,7 +101,7 @@ type BCABankTransferDetailFreeText struct {
 type BCABankTransferDetail struct {
 	Bank           Bank                          `json:"bank"`
 	VaNumber       string                        `json:"va_number"`
-	SubCompanyCode *string                       `json:"sub_company_code,omitempty"`
+	SubCompanyCode string                        `json:"sub_company_code,omitempty"`
 	FreeText       BCABankTransferDetailFreeText `json:"free_text"`
 }
 
@@ -215,9 +215,9 @@ type SnapReq struct {
 	BNIBankTransfer     *BNIBankTransferDetail     `json:"bni_va,omitempty"`
 	PermataBankTransfer *PermataBankTransferDetail `json:"permata_va,omitempty"`
 	Expiry              *Expiry                    `json:"expiry,omitempty"`
-	CustomField1        *string                    `json:"custom_field1,omitempty"`
-	CustomField2        *string                    `json:"custom_field2,omitempty"`
-	CustomField3        *string                    `json:"custom_field3,omitempty"`
+	CustomField1        string                     `json:"custom_field1,omitempty"`
+	CustomField2        string                     `json:"custom_field2,omitempty"`
+	CustomField3        string                     `json:"custom_field3,omitempty"`
 }
 
 // CaptureReq : Represent Capture request payload
