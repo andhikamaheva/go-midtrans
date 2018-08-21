@@ -52,7 +52,7 @@ type CreditCardDetail struct {
 	Secure          bool     `json:"secure,omitempty"`
 	Channel         string   `json:"channel,omitempty"`
 	Bank            string   `json:"bank,omitempty"`
-	TokenID         string   `json:"token_id"`
+	TokenID         string   `json:"token_id,omitempty"`
 	Bins            []string `json:"bins,omitempty"`
 	InstallmentTerm int8     `json:"installment_term,omitempty"`
 	Type            string   `json:"type,omitempty"`
