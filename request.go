@@ -70,6 +70,7 @@ type PermataBankTransferDetail struct {
 
 // BNIBankTransferDetail : Represent BNI bank_transfer detail
 type BNIBankTransferDetail struct {
+	Bank     Bank   `json:"bank,omitemtpy"`
 	VaNumber string `json:"va_number"`
 }
 
