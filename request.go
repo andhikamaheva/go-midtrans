@@ -179,7 +179,7 @@ type Callbacks struct {
 type Expiry struct {
 	StartAt  time.Time `json:"start_at,omitempty"`
 	Unit     string    `json:"unit,omitempty"`
-	duration int64     `json:"duration,omitempty"`
+	Duration int64     `json:"duration,omitempty"`
 }
 
 // ChargeReq : Represent Charge request payload
