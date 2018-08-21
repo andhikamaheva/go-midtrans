@@ -1,9 +1,5 @@
 package midtrans
 
-import (
-	"time"
-)
-
 // ItemDetail : Represent the transaction details
 type ItemDetail struct {
 	ID           string `json:"id"`
@@ -180,9 +176,9 @@ type Callbacks struct {
 
 // Expiry : Represent transaction expiry time
 type Expiry struct {
-	StartAt  *time.Time `json:"start_at,omitempty"`
-	Unit     string     `json:"unit,omitempty"`
-	Duration int64      `json:"duration,omitempty"`
+	StartTime string `json:"start_time,omitempty"`
+	Unit      string `json:"unit,omitempty"`
+	Duration  int64  `json:"duration,omitempty"`
 }
 
 // ChargeReq : Represent Charge request payload
