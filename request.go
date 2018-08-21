@@ -48,9 +48,11 @@ type TransactionDetails struct {
 
 // CreditCardDetail : Represent credit card detail
 type CreditCardDetail struct {
+	SaveCard        bool     `json:"save_card,omitempty"`
 	Secure          bool     `json:"secure,omitempty"`
-	TokenID         string   `json:"token_id"`
+	Channel         string   `json:"channel,omitempty"`
 	Bank            string   `json:"bank,omitempty"`
+	TokenID         string   `json:"token_id"`
 	Bins            []string `json:"bins,omitempty"`
 	InstallmentTerm int8     `json:"installment_term,omitempty"`
 	Type            string   `json:"type,omitempty"`
