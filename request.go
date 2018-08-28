@@ -214,6 +214,7 @@ type SnapReq struct {
 	BNIBankTransfer     *BNIBankTransferDetail     `json:"bni_va,omitempty"`
 	PermataBankTransfer *PermataBankTransferDetail `json:"permata_va,omitempty"`
 	Expiry              *Expiry                    `json:"expiry,omitempty"`
+	Callbacks           *Callbacks                 `json:"callbacks,omitempty"`
 	CustomField1        string                     `json:"custom_field1,omitempty"`
 	CustomField2        string                     `json:"custom_field2,omitempty"`
 	CustomField3        string                     `json:"custom_field3,omitempty"`
