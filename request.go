@@ -171,7 +171,7 @@ type ConvStoreDetail struct {
 
 // Callbacks : Represent callbacks url after transaction successfully paid
 type Callbacks struct {
-	finish string `json:"finish,omitempty"`
+	Finish string `json:"finish,omitempty"`
 }
 
 // Expiry : Represent transaction expiry time
