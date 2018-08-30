@@ -67,7 +67,7 @@ type PermataBankTransferDetail struct {
 // BNIBankTransferDetail : Represent BNI bank_transfer detail
 type BNIBankTransferDetail struct {
 	Bank     Bank   `json:"bank,omitemtpy"`
-	VaNumber string `json:"va_number"`
+	VaNumber string `json:"va_number,omitempty"`
 }
 
 // BCABankTransferLangDetail : Represent BCA bank_transfer lang detail
@@ -99,7 +99,7 @@ type BCABankTransferDetailFreeText struct {
 // BCABankTransferDetail : Represent BCA bank_transfer detail
 type BCABankTransferDetail struct {
 	Bank           Bank                          `json:"bank"`
-	VaNumber       string                        `json:"va_number"`
+	VaNumber       string                        `json:"va_number,omitempty"`
 	SubCompanyCode string                        `json:"sub_company_code,omitempty"`
 	FreeText       BCABankTransferDetailFreeText `json:"free_text"`
 }
