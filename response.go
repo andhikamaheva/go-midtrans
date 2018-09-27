@@ -53,3 +53,20 @@ type SnapResponse struct {
 	RedirectURL   string   `json:"redirect_url"`
 	ErrorMessages []string `json:"error_messages"`
 }
+
+// Beneficiaries : Response after calling the Beneficiaries API
+type Beneficiaries struct {
+	Name      string `json:"name"`
+	Bank      string `json:"bank"`
+	Account   string `json:"account"`
+	AliasName string `json:"alias_name"`
+	Email     string `json:"email"`
+}
+
+// ValidateBankAcount : Response for BankAcount
+type ValidateBankAcount struct {
+	AccountName string `json:"account_name"`
+	AccountNo   string `json:"account_no"`
+	BankName    string `json:"bank_name"`
+	ReffNumber  string `json:"retrieval_reff_num"`
+}

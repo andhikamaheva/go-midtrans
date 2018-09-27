@@ -1,6 +1,8 @@
 package midtrans
 
-import "strings"
+import (
+	"strings"
+)
 
 // EnvironmentType value
 type EnvironmentType int8
@@ -33,4 +35,14 @@ func (e EnvironmentType) String() string {
 // SnapURL : Get environment API URL
 func (e EnvironmentType) SnapURL() string {
 	return strings.Replace(e.String(), "api.", "app.", 1)
+}
+
+// IrisURL : Get environment API URL
+func (e EnvironmentType) IrisURL() string {
+	if Production == e {
+		return "https://app.midtrans.com/iris"
+	} else if Sandbox == e {
+		return "https://iris.sandbox.midtrans.com"
+	}
+	return "undefined"
 }

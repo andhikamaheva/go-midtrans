@@ -225,3 +225,12 @@ type CaptureReq struct {
 	TransactionID string  `json:"transaction_id"`
 	GrossAmt      float64 `json:"gross_amount"`
 }
+
+// BeneficiariesReq : Represent create or Beneficiaries request payload
+type BeneficiariesReq struct {
+	Name      string `json:"name"`
+	Account   string `json:"account"`
+	Bank      string `json:"bank"`
+	AliasName string `json:"alias_name"`
+	Email     string `json:"email,omitempty"`
+}

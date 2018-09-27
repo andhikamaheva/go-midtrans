@@ -2,6 +2,7 @@ package midtrans
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -15,8 +16,12 @@ import (
 // Client struct
 type Client struct {
 	APIEnvType EnvironmentType
-	ClientKey  string
-	ServerKey  string
+
+	ClientKey string
+	ServerKey string
+
+	ApproverKey string
+	CreatorKey  string
 
 	LogLevel int
 	Logger   *log.Logger
@@ -42,7 +47,7 @@ var defHTTPTimeout = 80 * time.Second
 var httpClient = &http.Client{Timeout: defHTTPTimeout}
 
 // NewRequest : send new request
-func (c *Client) NewRequest(method string, fullPath string, body io.Reader) (*http.Request, error) {
+func (c *Client) NewRequest(method string, fullPath string, body io.Reader, key ...string) (*http.Request, error) {
 	logLevel := c.LogLevel
 	logger := c.Logger
 
@@ -56,13 +61,18 @@ func (c *Client) NewRequest(method string, fullPath string, body io.Reader) (*ht
 
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Accept", "application/json")
-	req.SetBasicAuth(c.ServerKey, "")
+	if len(key) > 0 {
+		req.SetBasicAuth(key[0], "")
+	} else {
+		req.SetBasicAuth(c.ServerKey, "")
+	}
 
 	return req, nil
 }
 
 // ExecuteRequest : execute request
 func (c *Client) ExecuteRequest(req *http.Request, v interface{}) error {
+
 	logLevel := c.LogLevel
 	logger := c.Logger
 
@@ -71,12 +81,12 @@ func (c *Client) ExecuteRequest(req *http.Request, v interface{}) error {
 	}
 
 	start := time.Now()
-
 	res, err := httpClient.Do(req)
 	if err != nil {
 		if logLevel > 0 {
 			logger.Println("Cannot send request: ", err)
 		}
+
 		return err
 	}
 	defer res.Body.Close()
@@ -105,10 +115,17 @@ func (c *Client) ExecuteRequest(req *http.Request, v interface{}) error {
 	}
 
 	if v != nil {
+
 		if err = json.Unmarshal(resBody, v); err != nil {
 			return err
 		}
-		reflect.ValueOf(v).Elem().FieldByName("StatusCode").SetString(strconv.Itoa(res.StatusCode))
+
+		fmt.Println(v)
+
+		if reflect.ValueOf(v).Elem().FieldByName("StatuCode").IsValid() == true {
+			reflect.ValueOf(v).Elem().FieldByName("StatusCode").SetString(strconv.Itoa(res.StatusCode))
+		}
+
 	}
 
 	return nil
