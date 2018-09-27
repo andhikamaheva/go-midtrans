@@ -2,7 +2,6 @@ package midtrans
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -120,12 +119,11 @@ func (c *Client) ExecuteRequest(req *http.Request, v interface{}) error {
 			return err
 		}
 
-		fmt.Println(v)
-
-		if reflect.ValueOf(v).Elem().FieldByName("StatuCode").IsValid() == true {
-			reflect.ValueOf(v).Elem().FieldByName("StatusCode").SetString(strconv.Itoa(res.StatusCode))
+		if reflect.TypeOf(v).Elem().Kind() != reflect.Map {
+			if reflect.ValueOf(v).Elem().FieldByName("StatusCode").IsValid() {
+				reflect.ValueOf(v).Elem().FieldByName("StatusCode").SetString(strconv.Itoa(res.StatusCode))
+			}
 		}
-
 	}
 
 	return nil

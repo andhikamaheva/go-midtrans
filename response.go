@@ -63,6 +63,10 @@ type Beneficiaries struct {
 	Email     string `json:"email"`
 }
 
+type Status struct {
+	Status string `json:"status"`
+}
+
 // ValidateBankAcount : Response for BankAcount
 type ValidateBankAcount struct {
 	AccountName string `json:"account_name"`

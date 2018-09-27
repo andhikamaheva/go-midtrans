@@ -28,8 +28,8 @@ func (gateway *IrisGateway) Call(method, path string, body io.Reader, v interfac
 }
 
 // CreateBeneficiaries : Perform transaction using ChargeReq
-func (gateway *IrisGateway) CreateBeneficiaries(req *BeneficiariesReq) (interface{}, error) {
-	resp := make(map[string]interface{})
+func (gateway *IrisGateway) CreateBeneficiaries(req *BeneficiariesReq) (map[string]interface{}, error) {
+	var resp map[string]interface{}
 	jsonReq, _ := json.Marshal(req)
 
 	err := gateway.Call("POST", "api/v1/beneficiaries", bytes.NewBuffer(jsonReq), &resp)
@@ -42,8 +42,8 @@ func (gateway *IrisGateway) CreateBeneficiaries(req *BeneficiariesReq) (interfac
 }
 
 // ValidateBankAccount : get order status using order ID
-func (gateway *IrisGateway) ValidateBankAccount(bankName string, account string) (ValidateBankAcount, error) {
-	resp := ValidateBankAcount{}
+func (gateway *IrisGateway) ValidateBankAccount(bankName string, account string) (map[string]interface{}, error) {
+	var resp map[string]interface{}
 
 	err := gateway.Call("GET", "api/v1/account_validation?bank="+bankName+"&account="+account, nil, &resp)
 	if err != nil {
