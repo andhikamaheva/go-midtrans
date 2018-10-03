@@ -234,3 +234,18 @@ type BeneficiariesReq struct {
 	AliasName string `json:"alias_name"`
 	Email     string `json:"email,omitempty"`
 }
+
+// PayoutReq : Represent create payout
+type PayoutReq struct {
+	Payouts []PayoutDetails `json:"payouts"`
+}
+
+// PayoutDetails : Represent Payout Details
+type PayoutDetails struct {
+	BeneficiaryName    string `json:"beneficiary_name"`
+	BeneficiaryAccount string `json:"beneficiary_account"`
+	BeneficiaryEmail   string `json:"beneficiary_email,omitempty"`
+	Amount             string `json:"amount"`
+	Notes              string `json:"notes"`
+	BankAccountID      string `json:"bank_account_id,omitempty"`
+}

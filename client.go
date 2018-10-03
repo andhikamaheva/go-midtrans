@@ -76,7 +76,7 @@ func (c *Client) ExecuteRequest(req *http.Request, v interface{}) error {
 	logger := c.Logger
 
 	if logLevel > 1 {
-		logger.Println("Request ", req.Method, ": ", req.URL.Host, req.URL.Path)
+		logger.Println("Request ", req.Method, ": ", req.URL)
 	}
 
 	start := time.Now()

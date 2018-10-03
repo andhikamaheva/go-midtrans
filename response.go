@@ -63,14 +63,21 @@ type Beneficiaries struct {
 	Email     string `json:"email"`
 }
 
-type Status struct {
-	Status string `json:"status"`
-}
-
 // ValidateBankAcount : Response for BankAcount
 type ValidateBankAcount struct {
 	AccountName string `json:"account_name"`
 	AccountNo   string `json:"account_no"`
 	BankName    string `json:"bank_name"`
 	ReffNumber  string `json:"retrieval_reff_num"`
+}
+
+// Payout : Response for Payouts
+type Payout struct {
+	Payouts []PayoutDetailsResponse `json:"payouts"`
+}
+
+// PayoutDetailsResponse : Detail Response Payout
+type PayoutDetailsResponse struct {
+	Status      string `json:"status"`
+	ReferenceNo string `json:"reference_no"`
 }
