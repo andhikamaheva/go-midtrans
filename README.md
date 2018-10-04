@@ -89,6 +89,8 @@ You may want to override those `onSuccess`, `onPending` and `onError`
 functions to reflect the behaviour that you wished when the charging
 result in their respective state.
 
+### Iris Gateway
+
 ## License
 
 See [LICENSE](LICENSE).

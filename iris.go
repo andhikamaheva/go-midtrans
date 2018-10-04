@@ -55,7 +55,7 @@ func (gateway *IrisGateway) ValidateBankAccount(bankName string, account string)
 }
 
 // CreatePayouts : Create Payout with single or multiple payouts
-func (gateway *IrisGateway) CreatePayouts(req PayoutReq) (Payout, error) {
+func (gateway *IrisGateway) CreatePayouts(req *PayoutReq) (Payout, error) {
 	resp := Payout{}
 
 	jsonReq, _ := json.Marshal(req)
