@@ -244,6 +244,7 @@ type PayoutReq struct {
 type PayoutDetails struct {
 	BeneficiaryName    string `json:"beneficiary_name"`
 	BeneficiaryAccount string `json:"beneficiary_account"`
+	BneficiaryBank     string `json:"beneficiary_bank"`
 	BeneficiaryEmail   string `json:"beneficiary_email,omitempty"`
 	Amount             string `json:"amount"`
 	Notes              string `json:"notes"`
