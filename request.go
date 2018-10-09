@@ -250,3 +250,15 @@ type PayoutDetails struct {
 	Notes              string `json:"notes"`
 	BankAccountID      string `json:"bank_account_id,omitempty"`
 }
+
+// ApprovePayoutReq : Represent Approve Payout Requests
+type ApprovePayoutReq struct {
+	ReferenceNos []string `json:"reference_nos"`
+	OTP          string   `json:"otp"`
+}
+
+// RejectPayoutReq : Represent Reject Payout Requests
+type RejectPayoutReq struct {
+	ReferenceNos []string `json:"reference_nos"`
+	RejectReason string   `json:"reject_reason"`
+}

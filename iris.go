@@ -68,3 +68,33 @@ func (gateway *IrisGateway) CreatePayouts(req *PayoutReq) (Payout, error) {
 
 	return resp, nil
 }
+
+// ApprovePayouts : Approve Payout(s) with single or multiple payouts
+func (gateway *IrisGateway) ApprovePayouts(req *ApprovePayoutReq) (map[string]interface{}, error) {
+	var resp map[string]interface{}
+
+	jsonReq, _ := json.Marshal(req)
+
+	err := gateway.Call("POST", "api/v1/payouts/approve", bytes.NewBuffer(jsonReq), &resp, gateway.Client.ApproverKey)
+	if err != nil {
+		gateway.Client.Logger.Println("Error approve payouts: ", err)
+		return resp, err
+	}
+
+	return resp, nil
+}
+
+// RejectPayouts : Reject Payout(s) with single or multiple payouts
+func (gateway *IrisGateway) RejectPayouts(req *RejectPayoutReq) (map[string]interface{}, error) {
+	var resp map[string]interface{}
+
+	jsonReq, _ := json.Marshal(req)
+
+	err := gateway.Call("POST", "api/v1/payouts/reject", bytes.NewBuffer(jsonReq), &resp, gateway.Client.ApproverKey)
+	if err != nil {
+		gateway.Client.Logger.Println("Error reject payouts: ", err)
+		return resp, err
+	}
+
+	return resp, nil
+}
