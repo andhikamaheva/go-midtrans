@@ -21,6 +21,7 @@ type Client struct {
 
 	ApproverKey string
 	CreatorKey  string
+	MerchantKey string
 
 	LogLevel int
 	Logger   *log.Logger
