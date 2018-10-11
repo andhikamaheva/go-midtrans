@@ -2,6 +2,8 @@ package midtrans
 
 import (
 	"bytes"
+	"crypto/sha512"
+	"encoding/hex"
 	"encoding/json"
 	"io"
 	"strings"
@@ -97,4 +99,17 @@ func (gateway *IrisGateway) RejectPayouts(req *RejectPayoutReq) (map[string]inte
 	}
 
 	return resp, nil
+}
+
+// ValidateSignatureKey : Validate Iris Signature from Payout Notification
+func (gateway *IrisGateway) ValidateSignatureKey(payload string, headerKey string) bool {
+	hasher := sha512.New()
+	hasher.Write([]byte(string(payload) + gateway.Client.MerchantKey))
+
+	signatureKey := hex.EncodeToString(hasher.Sum(nil))
+
+	if signatureKey == headerKey {
+		return true
+	}
+	return false
 }
