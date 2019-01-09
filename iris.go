@@ -113,3 +113,13 @@ func (gateway *IrisGateway) ValidateSignatureKey(payload string, headerKey strin
 	}
 	return false
 }
+
+// GenerateSignatureKey : Generate Iris Signature key
+func (gateway *IrisGateway) GenerateSignatureKey(payload string) string {
+	hasher := sha512.New()
+	hasher.Write([]byte(string(payload) + gateway.Client.MerchantKey))
+
+	signatureKey := hex.EncodeToString(hasher.Sum(nil))
+
+	return signatureKey
+}
