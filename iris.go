@@ -29,6 +29,19 @@ func (gateway *IrisGateway) Call(method, path string, body io.Reader, v interfac
 	return gateway.Client.ExecuteRequest(req, v)
 }
 
+// CheckBalance : get current balance information
+func (gateway *IrisGateway) CheckBalance() (map[string]interface{}, error) {
+	var resp map[string]interface{}
+
+	err := gateway.Call("GET", "api/v1/balance", nil, &resp, gateway.Client.ApproverKey)
+	if err != nil {
+		gateway.Client.Logger.Println("Error Check Balance: ", err)
+		return resp, err
+	}
+
+	return resp, nil
+}
+
 // CreateBeneficiaries : Perform transaction using ChargeReq
 func (gateway *IrisGateway) CreateBeneficiaries(req *BeneficiariesReq) (map[string]interface{}, error) {
 	var resp map[string]interface{}
