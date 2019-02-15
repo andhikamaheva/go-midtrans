@@ -42,7 +42,7 @@ func (e EnvironmentType) IrisURL() string {
 	if Production == e {
 		return "https://app.midtrans.com/iris"
 	} else if Sandbox == e {
-		return "https://iris.sandbox.midtrans.com"
+		return "https://app.sandbox.midtrans.com/iris/api"
 	}
 	return "undefined"
 }
